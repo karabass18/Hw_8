@@ -1,0 +1,55 @@
+{
+	"title": "Workers",
+	"num": 3,
+	"info": [{
+			"firstname": "Vova",
+			"lastname": "Vovin",
+			"age": 40,
+			"children": {
+				"num": 2,
+				"child-info": [{
+						"name": "Masha",
+						"age": 5
+					},
+					{
+						"name": "Kolya",
+						"age": 8
+					}
+				]
+			}
+		},
+		{
+			"firstname": "Petr",
+			"lastname": "Petrov",
+			"age": 30,
+			"children": {
+				"num": 1,
+				"child-info": [{
+					"name": "Misha",
+					"age": 2
+				}]
+			}
+		},
+		{
+			"firstname": "Lena",
+			"lastname": "Lenina",
+			"age": 35,
+			"children": {
+				"num": 3,
+				"child-info": [{
+						"name": "Vanya",
+						"age": 7
+					},
+					{
+						"name": "Olya",
+						"age": 9
+					},
+					{
+						"name": "Nata",
+						"age": 11
+					}
+				]
+			}
+		}
+	]
+}

@@ -2,8 +2,11 @@ package com.karabass18;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
+import com.fasterxml.jackson.core.util.JacksonFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -113,5 +116,14 @@ public class Main {
             }
 
         }
+    }
+    @DisplayName("Проверка Json")
+    @Test
+    void jsonFileTest() throws Exception{
+        ObjectMapper objectMap = new ObjectMapper();
+        try (
+                InputStream resource = cLoader.getResourceAsStream("workers.json");
+                InputStreamReader reader = new InputStreamReader(resource)
+        ) {
     }
 }
