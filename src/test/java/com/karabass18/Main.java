@@ -4,10 +4,14 @@ import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
 import com.fasterxml.jackson.core.util.JacksonFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.google.gson.JsonObject;
+import com.karabass18.model.Workers;
 import com.opencsv.CSVReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.json.Json;
 
 import java.io.File;
 import java.io.InputStream;
@@ -125,5 +129,11 @@ public class Main {
                 InputStream resource = cLoader.getResourceAsStream("workers.json");
                 InputStreamReader reader = new InputStreamReader(resource)
         ) {
+            Workers workers  = objectMap.readValue(reader, Workers.class);
+            assertThat(workers.num).isEqualTo(3);
+            assertThat(workers.title).isEqualTo("Workers");
+            assertThat(workers.info.get(1).);
+        }
     }
+
 }
