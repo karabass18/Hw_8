@@ -11,18 +11,18 @@ public class Workers {
     public ArrayList<InfoWorker> info;
 
 
-    private static class InfoWorker {
+    public static class InfoWorker {
         public String firstname;
         public String lastname;
         public int age;
         public Children children;
 
-        private static class Children {
+        public static class Children {
             public int num;
             @JsonProperty("child-info")
             public ArrayList<ChildInfo> childinfo;
 
-            private static class ChildInfo {
+            public static class ChildInfo {
                 public String name;
                 public int age;
             }

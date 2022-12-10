@@ -2,16 +2,11 @@ package com.karabass18;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
-import com.fasterxml.jackson.core.util.JacksonFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.google.gson.JsonObject;
 import com.karabass18.model.Workers;
 import com.opencsv.CSVReader;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.json.Json;
 
 import java.io.File;
 import java.io.InputStream;
@@ -28,18 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Main {
     ClassLoader cLoader = Main.class.getClassLoader();
-   /* @Test
-    void zipTest() throws Exception {
-        ZipFile zfile = new ZipFile(new File("src/test/resources/all_countries.zip"));
-        ZipInputStream is = new ZipInputStream(cl.getResourceAsStream("zip/sample-zip-file.zip"));
-        ZipEntry entry;
-        while((entry = is.getNextEntry()) != null) {
-            assertThat(entry.getName()).isEqualTo("sample.txt");
-            try (InputStream inputStream = zf.getInputStream(entry)) {
-                // проверки
-            }
-        }
-    } */
+
 
     @DisplayName("Проверка zip архива")
     @Test
@@ -101,6 +85,7 @@ public class Main {
 
         }
     }
+
     @DisplayName("Проверка XLSX файла")
     @Test
     void xslxFileTest() throws Exception {
@@ -114,25 +99,30 @@ public class Main {
                 if (myEntry.getName().contains(".xlsx")) {
                     try (InputStream inputStream = zfile.getInputStream(myEntry)) {
                         XLS cont = new XLS(inputStream);
-                        assertThat(cont.excel.getSheetAt(0).getRow(2).getCell(1).getStringCellValue()).contains("Algeria");
+                        assertThat(cont.excel.getSheetAt(0).getRow(2)
+                                       .getCell(1).getStringCellValue()).contains("Algeria");
                     }
                 }
             }
 
         }
     }
+
     @DisplayName("Проверка Json")
     @Test
-    void jsonFileTest() throws Exception{
+    void jsonFileTest() throws Exception {
         ObjectMapper objectMap = new ObjectMapper();
         try (
                 InputStream resource = cLoader.getResourceAsStream("workers.json");
                 InputStreamReader reader = new InputStreamReader(resource)
         ) {
-            Workers workers  = objectMap.readValue(reader, Workers.class);
+            Workers workers = objectMap.readValue(reader, Workers.class);
             assertThat(workers.num).isEqualTo(3);
             assertThat(workers.title).isEqualTo("Workers");
-            assertThat(workers.info.get(1).);
+            assertThat(workers.info.get(1).lastname).isEqualTo("Petrov");
+            assertThat(workers.info.get(1).children.num).isEqualTo(1);
+            assertThat(workers.info.get(2).children.childinfo.get(0).name).isEqualTo("Vanya");
+            assertThat(workers.info.get(2).children.childinfo.get(2).age).isEqualTo(11);
         }
     }
 
